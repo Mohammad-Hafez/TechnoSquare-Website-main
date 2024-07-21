@@ -1,0 +1,19 @@
+<app-page-header></app-page-header>
+<section class="py-4 px-3">
+  <div class="container px-lg-5 pb-3 mb-5">
+    <div class="section-heading text-center my-3 py-3" data-aos="fade-up">
+      <p class="lead d-none d-md-block">
+        Techno Square offers cutting-edge technology education programmes for
+        students
+      </p>
+      <hr />
+    </div>
+    <div class="row row-cols-1 row-cols-md-3 g-5">
+      @for (event of events; track event.id) {
+      <div class="col-xl-4 col-md-6" data-aos="fade-up">
+        <app-events-card [event]="event"></app-events-card>
+      </div>
+      }
+    </div>
+  </div>
+</section>

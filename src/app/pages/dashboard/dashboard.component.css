@@ -1,0 +1,57 @@
+main {
+  background: url("../../../assets/images/dashboard.png");
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+h3 {
+  font-weight: 900;
+}
+
+th.p-element {
+  padding-block: 1rem;
+  text-align: center;
+}
+td {
+  text-align: center;
+  font-size: 14px;
+  padding: 0.8rem 0.5rem;
+}
+.TabelButton {
+  background-color: transparent;
+  width: 32px;
+  height: 32px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  border: 1px solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -ms-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  cursor: pointer;
+}
+
+.TabelButton:hover {
+  transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -o-transform: scale(1.1);
+}
+.approve {
+  border-color: #8bc34a !important;
+  color: #8bc34a !important;
+}
+.cancel {
+  color: #c0392b !important;
+  border-color: #c0392b;
+}

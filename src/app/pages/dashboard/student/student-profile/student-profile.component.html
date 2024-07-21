@@ -1,0 +1,54 @@
+<main class="profile-page">
+  <div class="content">
+    <img class="profile-img" [src]="student.image" alt="profile image" />
+    <!-- <div class="content__bull"></div> -->
+
+    <div class="profile-info text-center">
+      <h2>{{ student.name }}</h2>
+    </div>
+    <div class="row">
+      <div class="col-12 col-md-10 m-auto table-responsive mt-4">
+        <table class="table table-hover">
+          <tbody>
+            <tr>
+              <th>Email</th>
+              <td>{{ student.email }}</td>
+            </tr>
+            <tr>
+              <th>Phone</th>
+              <td>{{ student.phone }}</td>
+            </tr>
+            <tr>
+              <th>City</th>
+              <td>{{ student.city }}</td>
+            </tr>
+            <tr>
+              <th>Address</th>
+              <td>{{ student.address }}</td>
+            </tr>
+            <tr>
+              <th>Date Of Birth</th>
+              <td>{{ student.date_of_birth }}</td>
+            </tr>
+            <tr>
+              <th>Date Of Join</th>
+              <td>{{ student.date_of_join }}</td>
+            </tr>
+            <tr>
+              <th>Gender</th>
+              <td>{{ student.gender | titlecase }}</td>
+            </tr>
+            <tr>
+              <th>School</th>
+              <td>{{ student.school }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="btn-container text-center mt-3">
+      <input type="file" #fileInput accept="image/*" (change)="onFileSelected($event)" hidden>
+      <button class="btn btn-primary" (click)="fileInput.click()">Upload Image</button>
+    </div>
+  </div>
+</main>

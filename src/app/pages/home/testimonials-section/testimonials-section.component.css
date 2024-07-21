@@ -1,0 +1,12 @@
+.bg-transparent {
+  background-color: rgba(0, 0, 0, 0.05) !important;
+  min-height: 300px;
+  font-size: 1.1rem;
+}
+
+[class^="number-slide"],
+[class*=" number-slide"] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

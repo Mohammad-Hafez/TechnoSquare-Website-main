@@ -1,0 +1,126 @@
+/*** Navbar ***/
+
+.navbar.navbar-light {
+  text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-light .navbar-nav .nav-link {
+  position: relative;
+  margin-left: 1.5rem;
+  padding-block: 1.5rem;
+  color: #333;
+  font-weight: 700;
+  transition: 0.5s;
+}
+
+.sticky-top.navbar-light .navbar-nav .nav-link {
+  padding: 1.25rem 0;
+  color: var(--secondary);
+}
+
+.navbar-light .navbar-nav .nav-link:hover,
+.navbar-light .navbar-nav .nav-link.active {
+  color: var(--primary) !important;
+}
+
+.navbar-light .navbar-brand h1 {
+  color: #ffffff;
+}
+
+.navbar-light .navbar-brand img {
+  max-height: 60px;
+  transition: 0.5s;
+}
+
+.sticky-top.navbar-light .navbar-brand img {
+  max-height: 45px;
+}
+
+.profile-links {
+  font-size: 0.9rem;
+}
+
+.profile-links a {
+  border-radius: 5px;
+  color: #555;
+  padding-block: 0.5rem;
+  background-color: transparent;
+}
+
+.dropdown-toggle::after {
+  content: none;
+}
+
+@media (max-width: 991.98px) {
+  .sticky-top.navbar-light {
+    position: relative;
+    background: #ffffff;
+  }
+
+  .navbar-light .navbar-collapse {
+    margin-top: 15px;
+    border-top: 1px solid #dddddd;
+  }
+
+  .navbar-light .navbar-nav .nav-link,
+  .sticky-top.navbar-light .navbar-nav .nav-link {
+    padding: 10px 0;
+    margin-left: 0;
+    color: var(--secondary) !important;
+  }
+
+  .navbar-light .navbar-brand h1 {
+    color: var(--primary);
+  }
+
+  .navbar-light .navbar-brand img {
+    max-height: 36px;
+  }
+}
+
+@media (max-width: 373px) {
+  .navbar-light .navbar-brand img {
+    max-height: 26px;
+  }
+}
+
+@media (min-width: 992px) {
+  .navbar-light {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    z-index: 999;
+  }
+
+  .sticky-top.navbar-light {
+    position: fixed;
+    background: #ffffff;
+  }
+
+  .navbar-light .navbar-nav .nav-link::before {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 2px;
+    bottom: -1px;
+    left: 50%;
+    background: var(--primary);
+    transition: 0.5s;
+  }
+
+  .navbar-light .navbar-nav .nav-link:hover::before,
+  .navbar-light .navbar-nav .nav-link.active::before {
+    width: 100%;
+    left: 0;
+  }
+
+  .navbar-light .navbar-nav .nav-link.nav-contact::before {
+    display: none;
+  }
+
+  .sticky-top.navbar-light .navbar-brand h1 {
+    color: var(--primary);
+  }
+}

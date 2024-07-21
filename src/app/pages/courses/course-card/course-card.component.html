@@ -1,0 +1,42 @@
+<div class="card rounded-4 border-0 h-100">
+  <div class="card-body p-3">
+    <div class="">
+      <div class="card-img-container rounded-4 mb-4">
+        <a [routerLink]="['/courses', course.id]">
+          <img
+            [src]="course.image"
+            alt="{{ course.name }}"
+            (click)="scrollToTop()"
+            class="card-img img-fluid d-block mx-auto"
+          />
+        </a>
+      </div>
+
+      <span class="card-tag mb-2">{{ course.track }}</span>
+
+      <h5 class="my-2">
+        <a
+          [routerLink]="['/courses', course.id]"
+          (click)="scrollToTop()"
+          class="card-title"
+        >
+          {{ course.commercial_name }}
+        </a>
+      </h5>
+
+      <p class="small text-muted">
+        {{ course.short_desc }}
+      </p>
+    </div>
+
+    <div class="d-flex align-items-center justify-content-center">
+      <a
+        [routerLink]="['/courses', course.id]"
+        (click)="scrollToTop()"
+        class="btn btn-primary rounded-pill flex-grow-1 mt-3"
+      >
+        Read More
+      </a>
+    </div>
+  </div>
+</div>

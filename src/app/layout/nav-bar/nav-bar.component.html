@@ -1,0 +1,130 @@
+<div class="container-xxl position-relative p-0">
+  <nav
+    class="navbar navbar-expand-lg navbar-light m-auto text-center px-4 px-lg-5 py-3 py-lg-0"
+    id="navbar"
+  >
+    <a routerLink="/home" class="navbar-brand p-0">
+      <img
+        class=""
+        src="assets/images/techno-logo-landscape-dark.png"
+        alt="Logo"
+      />
+    </a>
+    <button
+      class="navbar-toggler"
+      style="box-shadow: none; border: none"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarCollapse"
+    >
+      <span> <fa-icon [icon]="faBars"></fa-icon> </span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <div class="navbar-nav ms-auto py-0">
+        <a
+          routerLink="/home"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="nav-item mt-1 nav-link"
+        >
+          Home
+        </a>
+        <a
+          routerLink="/courses"
+          routerLinkActive="active"
+          class="nav-item mt-1 nav-link"
+        >
+          Courses
+        </a>
+        <a
+          routerLink="/events"
+          routerLinkActive="active"
+          class="nav-item mt-1 nav-link"
+        >
+          Events
+        </a>
+        <a
+          routerLink="/contact-us"
+          routerLinkActive="active"
+          class="nav-item mt-1 nav-link"
+        >
+          Contact
+        </a>
+        <a
+          routerLink="/about-us"
+          routerLinkActive="active"
+          class="nav-item mt-1 nav-link"
+        >
+          About
+        </a>
+
+        @if ( this.isAuthenticated | async) {
+        <a
+          [routerLink]="userRole === 'instructor' ? '/instructor' : '/student'"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="nav-item mt-1 nav-link"
+        >
+          My Courses
+        </a>
+        <div ngbDropdown class="d-inline-block">
+          <a
+            class="nav-link dropdown-toggle"
+            id="profileDropdown"
+            role="button"
+            ngbDropdownToggle
+          >
+            <img
+              class="rounded-circle"
+              [src]="
+                userImage
+                  ? userImage
+                  : 'https://cdn-icons-png.freepik.com/512/6915/6915987.png'
+              "
+              alt="Profile Picture"
+              width="32"
+            />
+          </a>
+          <div
+            class="dropdown-menu dropdown-menu-end p-0"
+            ngbDropdownMenu
+            aria-labelledby="profileDropdown"
+          >
+            <div
+              class="d-flex flex-column align-items-center border-bottom px-3 py-3"
+            >
+              <div class="mb-2">
+                <img
+                  class="rounded-circle px-4"
+                  [src]="
+                    userImage
+                      ? userImage
+                      : 'https://cdn-icons-png.freepik.com/512/6915/6915987.png'
+                  "
+                  alt="Profile Picture"
+                  width="200"
+                />
+              </div>
+              <div class="text-center">
+                <p class="fw-bolder m-0">{{ userName }}</p>
+              </div>
+            </div>
+
+            <div class="profile-links text-center">
+              @if (userRole === 'instructor') {
+              <a ngbDropdownItem routerLink="/instructor/profile">Profile</a>
+              } @else {
+              <a ngbDropdownItem routerLink="/student/profile">Profile</a>
+              }
+
+              <a ngbDropdownItem href="" (click)="onLogout()">Log Out</a>
+            </div>
+          </div>
+        </div>
+        } @else {
+        <a routerLink="/login" class="nav-item nav-link mt-1"> Login </a>
+        }
+      </div>
+    </div>
+  </nav>
+</div>

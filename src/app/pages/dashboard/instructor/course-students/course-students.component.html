@@ -1,0 +1,132 @@
+<div class="py-5">
+  <div class="section-heading text-center mb-5" id="pop-courses">
+    <h3>Group Info</h3>
+    <hr />
+  </div>
+  <p-table [value]="students" [scrollable]="true" styleClass="p-datatable-striped"
+    [tableStyle]="{ 'min-width': '70rem' }" [alwaysShowPaginator]="false" [showFirstLastIcon]="false" [paginator]="true"
+    [rows]="5" class="shadow-sm border-2 rounded table" [(selection)]="selectedStudents">
+    <ng-template pTemplate="caption">
+      <div class="m-0 px-3 pt-4">
+        <h5 class="fw-bold m-0">Attendance:</h5>
+      </div>
+      <div class="d-flex align-items-center justify-content-between px-3 pb-3">
+        <div class="form-group col-2">
+          <select class="form-select h-100" id="floatingSelectGrid" [(ngModel)]="selectedSession" name="session">
+            <option value="" disabled selected>Session Attendance</option>
+            <option *ngFor="let session of sessions.slice(0, 8); let i = index" [value]="session.id"
+              [disabled]="firstSelectableSessionIndex !== i">
+              {{ "Session " + (i + 1) }}
+            </option>
+          </select>
+        </div>
+        <div class="">
+          <p-button label="Session Feedback" severity="primary" class="me-3" (click)="showFeedbackDialog()" />
+
+          <p-button class="" label="Submit attendance" severity="success"
+            [disabled]="!selectedSession || selectedStudents.length === 0" (click)="onSubmitAttendance()" />
+        </div>
+      </div>
+
+      <div class="text-center border-top py-3">
+        <h4 class="fw-bold m-0">Students List:</h4>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th class="text-center py-3" style="width: 5%">
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th>
+        <th pSortableColumn="name" class="text-center py-3" style="width: 15%">
+          Name <p-sortIcon field="name"></p-sortIcon>
+        </th>
+        <th class="text-center py-3" style="width: 10%">Phone</th>
+        <th class="text-center py-3" style="width: 15%">School</th>
+        <th class="text-center py-3" style="width: 10%">Age</th>
+        <th class="text-center py-3" style="width: 10%">Actions</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-students>
+      <tr>
+        <td><p-tableCheckbox [value]="rowData"></p-tableCheckbox></td>
+        <td>{{ rowData.name }}</td>
+        <td>{{ rowData.phone }}</td>
+        <td>{{ rowData.school }}</td>
+        <td>{{ calculateAge(rowData.date_of_birth) }}</td>
+        <td class="d-flex justify-content-center align-content-center">
+          <i (click)="showCommentDialog(rowData)" class="pi pi-comment TabelButton mx-1 approve"></i>
+          <button [ngClass]="{ 'disabled-button': !allSessionsHaveAttendance }" [disabled]="!allSessionsHaveAttendance"
+            (click)="showGradeDialog(rowData)" class="TabelButton mx-1 approve">
+            <i class="pi pi-list-check"></i>
+          </button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-dialog header="Send Comment" [modal]="true" [(visible)]="commentVisible" (onHide)="clearTextarea()"
+  [style]="{ width: '30rem' }">
+  <div class="container my-2">
+    <div class="d-flex align-items-center flex-column g-3 mb-3">
+      <h6 class="p-text-secondary d-block mb-2 me-auto">
+        Send To : {{ rowDataForComment?.name }}
+      </h6>
+
+      <select class="form-select h-100 mb-3" id="floatingSelectGrid" [(ngModel)]="selectedCommentSession" name="session">
+        <option value="" disabled selected>Select Session</option>
+        <option *ngFor="let session of sessions.slice(0, 8); let i = index" [value]="session.id">
+          {{ "Session " + (i + 1) }}
+        </option>
+      </select>
+      <textarea [(ngModel)]="comment" pInputTextarea id="username" class="flex-auto form-control" autocomplete="off"
+        placeholder="Leave a message..."></textarea>
+      <span class="text-danger my-1">*Note: Make Sure You Select Session First</span>
+    </div>
+    <div class="d-flex justify-content-end gap-2">
+      <p-button label="Cancel" severity="secondary" (click)="commentVisible = false" />
+      <p-button label="Save" [disabled]="!selectedCommentSession || !comment"
+        (click)="onSubmitComment(rowDataForComment.id, comment)" />
+    </div>
+  </div>
+</p-dialog>
+
+<p-dialog header="Send Feedback" [modal]="true" [(visible)]="feedbackVisible" (onHide)="clearFeedback()"
+  [style]="{ width: '30rem' }">
+  <div class="container my-2">
+    <div class="d-flex align-items-center flex-column g-3 mb-3">
+      <div class="form-group mb-2 me-auto">
+        <select class="form-select h-100" id="floatingSelectGrid" [(ngModel)]="selectedFeedbackSession" name="session">
+          <option value="" disabled selected>Select Session</option>
+          <option *ngFor="let session of sessions.slice(0, 8); let i = index" [value]="session.id">
+            {{ "Session " + (i + 1) }}
+          </option>
+        </select>
+      </div>
+
+      <textarea [(ngModel)]="feedback" pInputTextarea id="username" class="flex-auto form-control" autocomplete="off"
+        placeholder="Leave a Feedback..."></textarea>
+    </div>
+    <div class="d-flex justify-content-end gap-2">
+      <p-button label="Cancel" severity="secondary" (click)="feedbackVisible = false" />
+      <p-button label="Submit" [disabled]="!selectedFeedbackSession || !feedback "
+        (click)="onSubmitFeedback(feedback)" />
+    </div>
+  </div>
+</p-dialog>
+
+<p-dialog header="Student Grade" [modal]="true" [(visible)]="gradeVisible" (onHide)="clearGrade()"
+  [style]="{ width: '30rem' }">
+  <div class="container my-2">
+    <span class="p-text-secondary d-block mb-2">Set {{ rowDataForGrade?.name }} Grade</span>
+    <div class="d-flex align-items-center g-3 mb-3">
+      <input type="number" [(ngModel)]="grade" name="" class="form-control" id="" />
+    </div>
+    <div class="d-flex justify-content-end gap-2">
+      <p-button label="Cancel" severity="secondary" (click)="gradeVisible = false" />
+      <p-button label="Save" (click)="onSubmitGrades(rowDataForGrade?.id, grade)" />
+    </div>
+  </div>
+</p-dialog>
+
+<p-toast></p-toast>

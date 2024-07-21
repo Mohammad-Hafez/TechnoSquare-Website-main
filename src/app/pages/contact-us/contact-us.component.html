@@ -1,0 +1,94 @@
+<app-page-header></app-page-header>
+
+<section class="py-4 px-3">
+  <div class="container px-lg-5 pb-3 mb-5" data-aos="fade-up">
+    <div class="section-heading text-center my-3 py-3">
+      <p class="lead">
+        Empowering Young Minds - Contact Techno Square Academy Now!
+      </p>
+      <hr />
+    </div>
+
+    <div class="row row-cols-1 g-5 px-3">
+      <!-- Contact-Us Form -->
+      <div class="col-lg-6 align-content-center" data-aos="fade-right">
+        <form
+          [formGroup]="contactUs"
+          (ngSubmit)="send()"
+          class="bg-white flex flex-col w-full mt-8"
+        >
+          <div class="relative mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input
+              formControlName="name"
+              type="text"
+              id="name"
+              name="name"
+              class="form-control input-field my-2"
+              required
+            />
+          </div>
+
+          <div class="relative mb-3">
+            <label for="phone" class="form-label">Phone Number</label>
+            <input
+              formControlName="phone"
+              type="text"
+              id="phone"
+              name="phone"
+              class="form-control"
+              minlength="11"
+              maxlength="11"
+              required
+            />
+          </div>
+
+          <div class="relative mb-3">
+            <label for="subject" class="form-label">Subject</label>
+            <input
+              formControlName="subject"
+              type="text"
+              id="subject"
+              name="subject"
+              class="form-control input-field my-2"
+              required
+            />
+          </div>
+
+          <div class="relative mb-3">
+            <label for="message" class="form-label">Message</label>
+            <textarea
+              formControlName="message"
+              id="message"
+              name="message"
+              class="form-control"
+              rows="4"
+              required
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            [disabled]="contactUs.invalid"
+            class="btn btn-lg w-100"
+            [ngClass]="success ? 'btn-success' : 'btn-primary'"
+          >
+            {{ sendBtn }}
+          </button>
+        </form>
+      </div>
+      <!-- Google Maps Embed -->
+      <div class="col-lg-6" data-aos="fade-left">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1013.9328276720906!2d32.312593379155274!3d31.26364779228715!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14f99dab41155555%3A0x225a1b657af4bb39!2z2YXYs9is2K8g2KfZhNiq2YjZg9mK2YTYp9iq!5e0!3m2!1sar!2seg!4v1714497760861!5m2!1sar!2seg"
+          width="100%"
+          height="100%"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          style="min-height: 5rem"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</section>

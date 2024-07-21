@@ -1,0 +1,24 @@
+<div class="py-5">
+    <div class="section-heading text-center mb-5" id="pop-courses">
+        <h3>Course Comments</h3>
+        <hr />
+    </div>
+    <p-table [value]="sessions" [scrollable]="true" styleClass="p-datatable-striped"
+        [tableStyle]="{ 'min-width': '70rem' }" [alwaysShowPaginator]="false" [showFirstLastIcon]="false" [rows]="8"
+        class="shadow-sm border-2 rounded text-capitalize">
+        <ng-template pTemplate="header">
+            <tr>
+                <th class="text-center py-3">Session Number</th>
+                <th class="text-center py-3">Attendance</th>
+                <th class="text-center py-3">Comment</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-session let-rowIndex="rowIndex">
+            <tr>
+                <td style="width: 10%" class="text-center">{{ rowIndex + 1 }}</td>
+                <td style="width: 20%" class="text-center p-2">{{ getAttendance(session.id) }}</td>
+                <td style="width: 70%" class="text-center p-2">{{ getComment(session.id) }}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

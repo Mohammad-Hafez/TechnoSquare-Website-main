@@ -1,0 +1,28 @@
+.why {
+  font-weight: 700;
+}
+
+.btns {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.btn-social {
+  display: inline-block;
+  color: var(--primary);
+  font-size: 2rem;
+  transition: 0.3s;
+}
+
+.btn-social.facebook:hover {
+  color: #2e63f3;
+}
+
+.btn-social.whatsapp:hover {
+  color: #38b917;
+}
+
+.btn-social.instagram:hover {
+  color: #b91788;
+}

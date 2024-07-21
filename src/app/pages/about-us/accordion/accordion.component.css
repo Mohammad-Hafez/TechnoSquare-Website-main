@@ -1,0 +1,22 @@
+.accordion-header .accordion-button {
+  font-weight: 900 !important;
+  color: #444;
+}
+
+.accordion-button:not(.collapsed),
+.accordion-button:focus {
+  outline: none;
+  border-color: transparent;
+  box-shadow: none;
+  background-color: #ffd32f;
+}
+.accordion-button::after {
+  background-image: none !important;
+  content: "\2212";
+  transform: none !important;
+  font-weight: 900;
+}
+.accordion-button.collapsed::after {
+  content: "\002B";
+  font-weight: 900;
+}

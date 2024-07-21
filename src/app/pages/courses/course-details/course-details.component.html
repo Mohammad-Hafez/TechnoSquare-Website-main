@@ -1,0 +1,86 @@
+<section class="py-4 px-3">
+  <div class="container px-4 pb-3 mb-5">
+    <div class="section-heading text-center my-3 py-3">
+      <h1 class="mt-2">{{ course?.commercial_name | uppercase }}</h1>
+      <p class="lead d-none d-md-block">
+        {{ course?.short_desc }}
+      </p>
+      <hr />
+    </div>
+    <div class="row row-cols-1 g-4">
+      <div class="col-lg-8">
+        <div>
+          <img class="img-fluid rounded" [src]="course?.image" [alt]="course?.commercial_name" />
+        </div>
+        <div class="">
+          <div class="position-relative mb-2 pt-5 pb-2">
+            <h3>COURSE INFORMATION</h3>
+          </div>
+          <div class="my-3">
+            {{ course?.long_desc }}
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="row mb-3 course-info text-capitalize">
+          <ul>
+            <li>
+              <p>Experience</p>
+              <p>{{ course?.exp_level | titlecase }}</p>
+            </li>
+            <li>
+              <p>Levels</p>
+              <p>{{ course?.levels_number }}</p>
+            </li>
+            <li>
+              <p>Weeks / Sessions</p>
+              <p>{{ course?.sessions_number }}</p>
+            </li>
+            <li>
+              <p>Duration</p>
+              <p>{{ course?.duration_hours }} Hours</p>
+            </li>
+            <li>
+              <p>Age</p>
+              <p>
+                @if (course?.end_age) {
+                {{ course?.start_age }}-{{ course?.end_age }} } @else { +{{
+                course?.start_age
+                }}
+                }
+              </p>
+            </li>
+            @if (course.prerequests_courses.length > 0) {
+            <li class="d-block">
+              <p class="w-100">prerequests courses :</p>
+              @for (prerequest of course?.prerequests_courses; track $index) {
+              <ul class="prerequests">
+
+                <li class="py-1">- {{prerequest}}</li>
+              </ul>
+              }
+            </li>
+            }@else {
+            <li>
+              <p class="">prerequests courses :</p>
+
+              <span>No prerequests</span>
+            </li>
+
+            }
+
+          </ul>
+        </div>
+        <div class="row mx-2">
+          <a routerLink="enroll" (click)="scrollToEnroll()" class="btn btn-primary rounded py-3 px-5">
+            Enroll Now for <span class="text-decoration-underline">{{ course?.price }}</span> EGP
+          </a>
+        </div>
+      </div>
+    </div>
+    <div id="enroll">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</section>

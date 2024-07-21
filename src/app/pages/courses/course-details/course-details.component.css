@@ -1,0 +1,23 @@
+p {
+  margin: 0;
+}
+
+.course-info li {
+  padding: 1rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+}
+
+ul.prerequests{
+  width: fit-content;
+  margin-left: auto;
+  list-style-type: circle;
+
+}
+
+ul.prerequests li{
+  border: none;
+  
+}

@@ -1,0 +1,176 @@
+<hr class="mt-5" />
+<div class="container mt-5 pt-2">
+  <main class="d-flex align-items-center justify-content-center">
+    <div class="form-style" style="width: 500px">
+      <h2 class="text-center text-muted mb-4">Enroll Now!</h2>
+      <form [formGroup]="enrollForm" (ngSubmit)="onSubmit()">
+        <!-- //NOTE - name input -->
+        <div class="form-group my-2">
+          <input
+            type="text"
+            formControlName="name"
+            id="name"
+            [ngClass]="
+              enrollForm.controls['name'].touched &&
+              enrollForm.controls['name'].invalid
+                ? 'border-err form-control'
+                : 'form-control'
+            "
+            placeholder="Full Name"
+          />
+          @if(enrollForm.controls['name'].touched &&
+          enrollForm.controls['name'].invalid){
+          <div class="error-message">
+            @if (enrollForm.controls['name'].errors?.['required']) {
+            <small>&#9888; Name Is Required</small>
+            } @if (enrollForm.controls['name'].errors?.['minlength']) {
+            <small>&#9888; Min Length Is 3 Digits</small>
+            }
+          </div>
+          }
+        </div>
+
+        <!-- //NOTE - email input -->
+        <div class="form-group my-2">
+          <input
+            type="email"
+            formControlName="email"
+            id="email"
+            [ngClass]="
+              enrollForm.controls['email'].touched &&
+              enrollForm.controls['email'].invalid
+                ? 'border-err form-control'
+                : 'form-control'
+            "
+            placeholder="Email"
+          />
+          @if(enrollForm.controls['email'].touched &&
+          enrollForm.controls['email'].invalid){
+          <div class="error-message">
+            @if (enrollForm.controls['email'].errors?.['required']) {
+            <small>&#9888; Email Is Required</small>
+            } @if (enrollForm.controls['email'].errors?.['email']) {
+            <small>&#9888; Enter Valid Email</small>
+            }
+          </div>
+          }
+        </div>
+
+        <!-- //NOTE - Phone input -->
+        <div class="form-group my-2">
+          <input
+            type="tel"
+            formControlName="phone"
+            minlength="11"
+            maxlength="11"
+            id="phone"
+            [ngClass]="
+              enrollForm.controls['phone'].touched &&
+              enrollForm.controls['phone'].invalid
+                ? 'border-err form-control'
+                : 'form-control'
+            "
+            placeholder="Phone Number"
+          />
+          @if(enrollForm.controls['phone'].touched &&
+          enrollForm.controls['phone'].invalid){
+          <div class="error-message">
+            @if (enrollForm.controls['phone'].errors?.['required']) {
+            <small>&#9888; Phone Number Is Required</small>
+            } @if (enrollForm.controls['phone'].errors?.['pattern']) {
+            <small>&#9888; Enter A Valid Phone Number</small>
+            }
+          </div>
+          }
+        </div>
+
+        <!-- //NOTE - Age input -->
+        <div class="form-group my-2">
+          <input
+            type="number"
+            formControlName="age"
+            id="age"
+            [ngClass]="
+              enrollForm.controls['age'].touched &&
+              enrollForm.controls['age'].invalid
+                ? 'border-err form-control'
+                : 'form-control'
+            "
+            min="5"
+            max="20"
+            placeholder="Age"
+          />
+          @if(enrollForm.controls['age'].touched &&
+          enrollForm.controls['age'].invalid){
+          <div class="error-message">
+            @if (enrollForm.controls['age'].errors?.['required']) {
+            <small>&#9888; Age Is Required</small>
+            } @if (enrollForm.controls['age'].errors?.['min'] ||
+            enrollForm.controls['age'].errors?.['max']) {
+            <small>&#9888; Age Must Be Between 5 And 20 Years Old</small>
+            }
+          </div>
+          }
+        </div>
+
+        <!-- //NOTE - Address input -->
+        <div class="form-group my-2">
+          <input
+            type="text"
+            formControlName="address"
+            id="address"
+            [ngClass]="
+              enrollForm.controls['address'].touched &&
+              enrollForm.controls['address'].invalid
+                ? 'border-err form-control'
+                : 'form-control'
+            "
+            placeholder="Full Address"
+          />
+          @if(enrollForm.controls['address'].touched &&
+          enrollForm.controls['address'].invalid){
+          <div class="error-message">
+            @if (enrollForm.controls['address'].errors?.['required']) {
+            <small>&#9888; Address Is Required</small>
+            }
+          </div>
+          }
+        </div>
+
+        <!-- //NOTE - School input -->
+        <div class="form-group my-2">
+          <input
+            type="text"
+            formControlName="school"
+            id="school"
+            [ngClass]="
+              enrollForm.controls['school'].touched &&
+              enrollForm.controls['school'].invalid
+                ? 'border-err form-control'
+                : 'form-control'
+            "
+            placeholder="School Name"
+          />
+          @if(enrollForm.controls['school'].touched &&
+          enrollForm.controls['school'].invalid){
+          <div class="error-message">
+            @if (enrollForm.controls['school'].errors?.['required']) {
+            <small>&#9888; School Name Is Required</small>
+            }
+          </div>
+          }
+        </div>
+        <input type="hidden" name="course_id" />
+        <!-- //NOTE - Submit input -->
+        <button
+          type="submit"
+          [disabled]="enrollForm.invalid"
+          class="btn w-100 rounded-1 my-4"
+          [ngClass]="success ? 'btn-success' : 'btn-primary'"
+        >
+          {{ enrollBtn }}
+        </button>
+      </form>
+    </div>
+  </main>
+</div>

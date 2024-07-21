@@ -1,0 +1,26 @@
+<div>
+  <div class="container px-lg-5 py-5">
+    <div class="section-heading text-center mb-5" id="pop-courses">
+      <h1>Popular Courses</h1>
+      <p class="lead">
+        Explore Top-Rated Courses And Enrich Your Children Skills with Our
+        Featured Selection!
+      </p>
+      <hr class="" />
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-4 g-xxl-4 g-5">
+      @for (course of courses; track course.id) {
+      <div class="col-xxl-3 col-md-6" data-aos="fade-up">
+        <app-course-card [course]="course"></app-course-card>
+      </div>
+      }
+    </div>
+
+    <div class="text-center mt-5">
+      <a routerLink="/courses" class="btn btn-primary rounded-pill px-3 py-2"
+        >View All Courses</a
+      >
+    </div>
+  </div>
+</div>

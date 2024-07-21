@@ -1,0 +1,30 @@
+[class^="number-slide"],
+[class*="number-slide"] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-height: 65vh;
+}
+
+.section-heading {
+  position: relative;
+  z-index: 5;
+}
+
+.thumbnail .keen-slider__slide {
+  margin-top: 10px;
+  max-height: 150px;
+}
+.thumbnail .keen-slider__slide {
+  cursor: pointer;
+}
+.thumbnail .keen-slider__slide.active {
+  border: 6px solid var(--primary);
+}
+
+img {
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+}

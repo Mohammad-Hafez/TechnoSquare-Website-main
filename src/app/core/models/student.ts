@@ -1,0 +1,18 @@
+export interface Student{
+    id?: number,
+    name?: string,
+    email?: string,
+    phone?: string,
+    image?: string,
+    date_of_birth?: string,
+    city?: string,
+    address?: string,
+    gender?: string,
+    date_of_join?: string,
+    school?: string,
+    mother_phone?: string,
+    father_phone?: string,
+    mother_job?: string,
+    father_job?: string,
+    status?: number,
+}

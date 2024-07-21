@@ -1,0 +1,20 @@
+<div class="card rounded shadow-sm border-light h-100">
+  <div class="p-3">
+    <div class="event-img-container">
+      <img
+        [src]="event.image"
+        alt="{{ event.title }}"
+        class="card-img img-fluid d-block mx-auto"
+      />
+    </div>
+    <h5 class="my-2">
+      <p class="card-title">
+        {{ event.title }}
+      </p>
+    </h5>
+
+    <p class="small text-muted">
+      {{ event.description }}
+    </p>
+  </div>
+</div>

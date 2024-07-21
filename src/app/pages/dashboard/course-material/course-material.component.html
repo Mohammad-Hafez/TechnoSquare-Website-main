@@ -1,0 +1,101 @@
+<div class="px-lg-5 py-5">
+  <div class="section-heading text-center mb-5" id="pop-courses">
+    <h3>Course Materials</h3>
+    <hr />
+  </div>
+  <div class="table-responsive">
+    <button *ngIf="userRole === 'instructor'" class="btn btn-primary mb-2 rounded-1 shadow-sm" (click)="showMaterialDialog()">Upload Material</button>
+    <table class="table text-center">
+      <thead class="table-secondary">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Session</th>
+          <th scope="col">Session Date</th>
+          <th scope="col">Material</th>
+          <th scope="col">Extra Material</th>
+        </tr>
+      </thead>
+      <tbody>
+        @if (materials) {
+          <tr *ngFor="let material of materials; let i = index">
+            @if (material.material_link || material.materials.length > 0) {
+              <th scope="row">{{ i + 1 }}</th>
+              <td>{{ material.session_name }}</td>
+              <td>{{ material.session_date }}</td>
+              <td>
+                @if (material.materials.length > 0){
+                  <span *ngFor="let path of material.materials; let i = index">
+                    <a [href]="path.file_path" class="text-black d-block" target="_blank">View</a>
+                  </span>  
+                }
+                @else {
+                  ---
+                }
+              </td>
+              <td>
+                @if (material.material_link){
+                  <a [href]="material.material_link" class="text-black d-block" target="_blank">View</a>
+                }
+                @else {
+                  ---
+                }
+
+              </td>  
+            }
+          </tr>  
+        }@else {
+          <tr>
+            <td colspan="5" class="fw-bolder fs-5 py-3">No Material Yet</td>
+          </tr>  
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<p-dialog
+  header="Add Material"
+  [modal]="true"
+  [(visible)]="materialVisible"
+  (onHide)="clearTextarea()"
+  [style]="{ width: '30rem' }"
+>
+  <div class="container my-2">
+    <div class="form-group col-7 mb-3">
+      <select
+        class="form-select"
+        id="floatingSelectGrid"
+        [(ngModel)]="selectedSession"
+        name="session"
+      >
+        <option value="" disabled selected>Session ID</option>
+        <option *ngFor="let session of sessions?.slice(0, 8); let i = index" [value]="session?.id">
+          {{ "Session " + (i + 1) }}
+        </option>
+      </select>
+    </div>
+
+    <div class="d-flex align-items-center flex-column g-3 mb-3">
+      <input 
+        type="url"         
+        [(ngModel)]="material"
+        (ngModelChange)="checkMaterialValidity()"
+        id="username"
+        class="flex-auto form-control"
+        autocomplete="off"
+        placeholder="Material URL"
+      />
+      <span *ngIf="!isMaterialUrlValid" class="text-danger my-1">*Invalid URL format</span>
+    </div>
+    <div class="d-flex justify-content-end gap-2">
+      <p-button label="Cancel" severity="secondary" (click)="materialVisible = false"></p-button>
+      <p-button
+        label="Save"
+        [disabled]="!selectedSession || !isMaterialUrlValid"
+        (click)="onSubmitMaterial()"
+      ></p-button>
+    </div>
+  </div>
+</p-dialog>
+
+<p-toast></p-toast>
